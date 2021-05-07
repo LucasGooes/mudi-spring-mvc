@@ -15,7 +15,7 @@ import br.com.marinhosoftware.mvc.mudi.repository.PedidoRepository;
 public class MudiApplication implements CommandLineRunner {
 
 	@Autowired
-	PedidoRepository pedidoRepository;
+	private PedidoRepository pedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(MudiApplication.class, args);
