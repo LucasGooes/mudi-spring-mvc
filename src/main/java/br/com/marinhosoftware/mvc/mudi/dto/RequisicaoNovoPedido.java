@@ -1,11 +1,16 @@
 package br.com.marinhosoftware.mvc.mudi.dto;
 
+import javax.validation.constraints.NotBlank;
+
 import br.com.marinhosoftware.mvc.mudi.model.Pedido;
 
 public class RequisicaoNovoPedido {
 	
+	@NotBlank
 	private String nomeProduto;
+	@NotBlank
 	private String urlProduto;
+	@NotBlank
 	private String urlImagem;
 	private String descricao;
 	
@@ -33,6 +38,7 @@ public class RequisicaoNovoPedido {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
 	public Pedido toPedido() {
 		Pedido pedido = new Pedido();
 		pedido.setNome(descricao);
