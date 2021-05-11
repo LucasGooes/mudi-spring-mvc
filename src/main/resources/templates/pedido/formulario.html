@@ -11,7 +11,7 @@
 			<form th:object="${requisicaoNovoPedido}" class="card-body" action="/pedido/novo" method="POST">
 				<div class="form-group">
 					<label for="nomeProduto">Produto</label>
-					<input th:fiel="*{nomeProduto}"  class="form-control" placeholder="nome do produto" />
+					<input th:field="*{nomeProduto}"  class="form-control" placeholder="nome do produto" />
 					<small>Informa qual o nome do produto</small>
 					<div th:errors="*{nomeProduto}">
 					</div>

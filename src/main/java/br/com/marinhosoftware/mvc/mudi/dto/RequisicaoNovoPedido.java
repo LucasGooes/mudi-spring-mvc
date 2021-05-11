@@ -3,6 +3,7 @@ package br.com.marinhosoftware.mvc.mudi.dto;
 import javax.validation.constraints.NotBlank;
 
 import br.com.marinhosoftware.mvc.mudi.model.Pedido;
+import br.com.marinhosoftware.mvc.mudi.model.StatusPedido;
 
 public class RequisicaoNovoPedido {
 	
@@ -41,10 +42,11 @@ public class RequisicaoNovoPedido {
 	
 	public Pedido toPedido() {
 		Pedido pedido = new Pedido();
-		pedido.setNome(descricao);
-		pedido.setDescricao(nomeProduto);
+		pedido.setNome(nomeProduto);
+		pedido.setDescricao(descricao);
 		pedido.setUrlImagem(urlImagem);
 		pedido.setUrlProduto(urlProduto);
+		pedido.setStatus(StatusPedido.AGUARDANDO);
 		return pedido;
 	}
 	
