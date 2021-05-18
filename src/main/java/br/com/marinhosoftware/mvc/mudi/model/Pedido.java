@@ -6,10 +6,12 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Pedido {
@@ -26,6 +28,9 @@ public class Pedido {
 	private String descricao;
 	@Enumerated(EnumType.STRING)
 	private StatusPedido status;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User user;
 	
 	public StatusPedido getStatus() {
 		return status;
