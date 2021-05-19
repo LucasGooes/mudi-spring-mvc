@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.formLogin( form -> form
 				.loginPage("/login")
-				.defaultSuccessUrl("/home", true)
+				.defaultSuccessUrl("/usuario/pedido", true)
 				.permitAll()
 			)
 			.logout(logout -> logout.logoutUrl("/logout"))
@@ -34,10 +34,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		
+		/*
+		UserDetails user = 
+				User.builder()
+					.username("joao")
+					.password(encoder.encode("joao"))
+					.roles("ADM")
+					.build();
+		*/
 		auth.jdbcAuthentication()
 			.dataSource(dataSource)
-			.passwordEncoder(encoder);
+			.passwordEncoder(encoder)
+			/*.withUser(user)*/;
 	}
 	
 
