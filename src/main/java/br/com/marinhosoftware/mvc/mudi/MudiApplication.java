@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 import br.com.marinhosoftware.mvc.mudi.model.Pedido;
 import br.com.marinhosoftware.mvc.mudi.model.StatusPedido;
 import br.com.marinhosoftware.mvc.mudi.repository.PedidoRepository;
 
+@EnableCaching
 @SpringBootApplication
 public class MudiApplication implements CommandLineRunner {
 
