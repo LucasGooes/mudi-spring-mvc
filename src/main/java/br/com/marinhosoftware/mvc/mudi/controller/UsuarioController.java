@@ -24,14 +24,14 @@ public class UsuarioController {
 
 	@GetMapping("pedido")
 	public String home(Model model, Principal principal) {
-		List<Pedido> pedidos = pedidoRepository.findAllByUser(principal.getName());
+		List<Pedido> pedidos = pedidoRepository.findByUser(principal.getName());
 		model.addAttribute("pedidos", pedidos);
 		return "usuario/home";
 	}
 
 	@GetMapping("pedido/{status}")
 	public String aguardando(@PathVariable("status") String status, Model model, Principal principal) {
-		List<Pedido> pedidos = pedidoRepository.findAllByStatusAndUser(StatusPedido.valueOf(status.toUpperCase()), principal.getName());
+		List<Pedido> pedidos = pedidoRepository.findByStatusAndUser(StatusPedido.valueOf(status.toUpperCase()), principal.getName());
 		model.addAttribute("pedidos", pedidos);
 		model.addAttribute("status", status);
 		return "usuario/home";
