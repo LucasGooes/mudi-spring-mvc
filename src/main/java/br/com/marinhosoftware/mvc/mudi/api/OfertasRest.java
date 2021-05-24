@@ -26,11 +26,11 @@ public class OfertasRest {
 			return null;
 		}
 		Pedido pedido = pedidoBuscado.get();
-		Oferta nova = requisicao.toOferta();
-		nova.setPedido(pedido);
-		pedido.getOfertas().add(nova);
+		Oferta novaOferta = requisicao.toOferta();
+		novaOferta.setPedido(pedido);
+		pedido.getOfertas().add(novaOferta);
 		pedidoRepository.save(pedido);
-		return nova;
+		return novaOferta;
 	}
 
 }
