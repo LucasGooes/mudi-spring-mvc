@@ -8,7 +8,7 @@ import br.com.marinhosoftware.mvc.mudi.model.Oferta;
 
 public class RequisicaoNovaOferta {
 	
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM,yyy");
+	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	private Long pedidoId;
 	private String valor;
