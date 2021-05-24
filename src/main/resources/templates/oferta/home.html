@@ -23,12 +23,18 @@
 						</div>
 						<div class="row mt-3">
 							<div class="col-md-5">
-								Valor: <input class="form-control"
+								Valor: <input v-bind:class="{'is-invalid':pedido.errors.valor!==''}" class="form-control"
 									v-model="pedido.valorNegociado" />
+								<div v-if="pedido.errors.valor" class="invalid-feedback">
+									{{pedido.errors.valor}}
+								</div>
 							</div>
 							<div class="col-md-7">
-								Data de Entrega: <input class="form-control"
+								Data de Entrega: <input v-bind:class="{'is-invalid':pedido.errors.dataEntrega!==''}" class="form-control"
 									v-model="pedido.dataEntrega" />
+								<div v-if="pedido.errors.dataEntrega" class="invalid-feedback">
+									{{pedido.errors.dataEntrega}}
+								</div>
 							</div>
 							<div class="mt-2">
 								<label>Comentário:</label>
@@ -59,12 +65,22 @@
 							axios
 								.get('http://localhost:8080/api/pedidos/aguardando')
 								.then(response =>  {
-									response.data.forEach(pedido => pedido.ofertaEnviada = false)
+									response.data.forEach(pedido => {
+										pedido.ofertaEnviada = false;
+										pedido.errors = {
+												valor: '',
+												dataEntrega: ''
+										}
+									})
 									this.pedidos = response.data	
 								})				
 						},
 						methods: {
 							enviarOferta: function(pedido) {
+								pedido.errors = {
+										valor: '',
+										dataEntrega: ''
+								}
 								axios
 									.post('http://localhost:8080/api/ofertas', {
 										pedidoId: pedido.id,
@@ -72,7 +88,12 @@
 										dataEntrega: pedido.dataEntrega,
 										comentario: pedido.comentario
 									})
-									.then(response => pedido.ofertaEnviada = true);
+									.then(response => pedido.ofertaEnviada = true)
+									.catch(error => {
+										error.response.data.errors.forEach(error => {
+											pedido.errors[error.field] = error.defaultMessage;
+										})
+									})
 							}
 						}
 					});
